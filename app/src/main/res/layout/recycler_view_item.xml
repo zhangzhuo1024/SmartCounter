@@ -45,7 +45,7 @@
                 android:id="@+id/end"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="end time :" />
+                android:text="end   time :" />
 
             <TextView
                 android:id="@+id/end_text"
@@ -62,7 +62,7 @@
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:layout_marginEnd="16dp"
-        android:text="0H" />
+        android:text="0次" />
 
 </RelativeLayout>
 
