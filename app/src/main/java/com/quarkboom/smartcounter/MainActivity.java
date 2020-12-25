@@ -3,7 +3,6 @@ package com.quarkboom.smartcounter;
 import android.os.Handler;
 import android.os.Message;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,8 +13,12 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
+/**
+ * @author: zhuozhang6
+ * @date: 2020/12/24
+ * @email: zhangzhuo1024@163.com
+ */
 public class MainActivity extends BaseActivity {
     private TextView mCounterNumberText;
     private TextView mCurrentTime;
