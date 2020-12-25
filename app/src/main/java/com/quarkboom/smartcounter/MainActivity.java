@@ -1,5 +1,7 @@
 package com.quarkboom.smartcounter;
 
+import android.os.Handler;
+import android.os.Message;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -12,14 +14,17 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 public class MainActivity extends BaseActivity {
     private TextView mCounterNumberText;
+    private TextView mCurrentTime;
     private MyRecyclerViewAdapter myRecyclerViewAdapter;
     private int counter = 0;
     ArrayList<CounterBean> counterBeanList = new ArrayList<>();
     private String mStartTime;
     private String mEndTime;
+    private Handler handler;
 
     @Override
     protected int getLayoutId() {
@@ -33,6 +38,8 @@ public class MainActivity extends BaseActivity {
         myRecyclerViewAdapter = new MyRecyclerViewAdapter();
         recyclerView.setAdapter(myRecyclerViewAdapter);
         mCounterNumberText = ((TextView) findViewById(R.id.counter_number));
+        mCurrentTime = ((TextView) findViewById(R.id.current_time));
+
         findViewById(R.id.add).setOnClickListener(view -> {
             if (counter == 0) {
                 mStartTime = getLocalTime();
@@ -54,6 +61,16 @@ public class MainActivity extends BaseActivity {
                 mCounterNumberText.setText(counter + "");
             }
         });
+
+        // 时间变化
+        handler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                mCurrentTime.setText((String) msg.obj);
+            }
+        };
+        Threads thread = new Threads();
+        thread.start();
     }
 
 
@@ -84,11 +101,26 @@ public class MainActivity extends BaseActivity {
             Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(System.currentTimeMillis());
             String format = formatter.format(calendar.getTime());
-            Toast.makeText(this, "当前系统时间为: \n" + format, Toast.LENGTH_SHORT).show();
             return format;
         } catch (Exception e) {
             e.printStackTrace();
             return "";
+        }
+    }
+
+    class Threads extends Thread {
+        @Override
+        public void run() {
+            try {
+                while (true) {
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyy-MM-dd HH:mm:ss");
+                    String time = (sdf.format(System.currentTimeMillis())).split(" ")[1];
+                    handler.sendMessage(handler.obtainMessage(100, time));
+                    Thread.sleep(500);
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 
