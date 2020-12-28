@@ -2,6 +2,7 @@ package com.quarkboom.smartcounter;
 
 import android.os.Handler;
 import android.os.Message;
+import android.os.Vibrator;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -28,6 +29,8 @@ public class MainActivity extends BaseActivity {
     private String mStartTime;
     private String mEndTime;
     private Handler handler;
+    private SoundPoolUtil soundPoolUtil;
+    private Vibrator vibrator;
 
     @Override
     protected int getLayoutId() {
@@ -49,6 +52,8 @@ public class MainActivity extends BaseActivity {
             }
             counter++;
             mCounterNumberText.setText(counter + "");
+            soundPoolUtil.play(1);
+            vibrator.vibrate(new long[]{0, 35}, -1);
         });
         findViewById(R.id.reset).setOnClickListener(view -> {
             if (counter > 0) {
@@ -62,6 +67,8 @@ public class MainActivity extends BaseActivity {
                 myRecyclerViewAdapter.updateData(counterBeanList);
                 counter = 0;
                 mCounterNumberText.setText(counter + "");
+                soundPoolUtil.play(2);
+                vibrator.vibrate(new long[]{0, 80}, -1);
             }
         });
 
@@ -74,6 +81,9 @@ public class MainActivity extends BaseActivity {
         };
         Threads thread = new Threads();
         thread.start();
+
+        soundPoolUtil = SoundPoolUtil.getInstance(this);
+        vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
     }
 
 

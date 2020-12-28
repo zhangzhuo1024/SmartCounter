@@ -189,12 +189,15 @@
             android:layout_width="100dp"
             android:layout_height="100dp"/>
 
-        <Button
+        <ImageView
             android:id="@+id/reset"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:text="@string/reset" />
+            android:clickable="true"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/reset"
+            android:background="@color/black"
+            android:layout_alignParentEnd="true" />
     </RelativeLayout>
 
 
