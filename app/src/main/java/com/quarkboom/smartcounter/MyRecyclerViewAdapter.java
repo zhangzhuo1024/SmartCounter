@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author: zhuozhang6
@@ -17,13 +18,13 @@ import java.util.ArrayList;
  */
 class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.MyHolder> {
 
-    private ArrayList<CounterBean> mCounterBeanList = new ArrayList<>();
+    private List<CounterBean> mCounterBeanList = new ArrayList<>();
 
     public MyRecyclerViewAdapter() {
 
     }
 
-    public void updateData(ArrayList<CounterBean> counterBeanList) {
+    public void updateData(List<CounterBean> counterBeanList) {
         this.mCounterBeanList = counterBeanList;
         notifyDataSetChanged();
     }
@@ -76,10 +77,10 @@ class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.M
 
         public void setData(CounterBean CounterBean) {
             this.mCounterBean = CounterBean;
-            name.setText(CounterBean.getmName());
-            start_text.setText(CounterBean.getmStartTime());
-            end_text.setText(CounterBean.getmEndTime());
-            total_time.setText(CounterBean.getmTotal());
+            name.setText(CounterBean.getName());
+            start_text.setText(CounterBean.getStartTime());
+            end_text.setText(CounterBean.getEndTime());
+            total_time.setText(CounterBean.getTotal());
 
         }
     }
