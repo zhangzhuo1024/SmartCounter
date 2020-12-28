@@ -47,6 +47,8 @@ public class MainActivity extends BaseActivity {
     TextView countTotal;
     @BindView(R.id.counter_number)
     TextView counterNumber;
+    @BindView(R.id.subtract)
+    ImageView subtract;
     @BindView(R.id.add)
     ImageView add;
     @BindView(R.id.reset)
@@ -133,7 +135,7 @@ public class MainActivity extends BaseActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.list_icon, R.id.current_time, R.id.name, R.id.start_text, R.id.end_text, R.id.use_time, R.id.count_total, R.id.counter_number, R.id.add, R.id.reset})
+    @OnClick({R.id.list_icon, R.id.current_time, R.id.name, R.id.start_text, R.id.end_text, R.id.use_time, R.id.count_total, R.id.counter_number, R.id.subtract, R.id.add, R.id.reset})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.list_icon:
@@ -152,6 +154,14 @@ public class MainActivity extends BaseActivity {
             case R.id.count_total:
                 break;
             case R.id.counter_number:
+                break;
+            case R.id.subtract:
+                if (counter > 0) {
+                    counter--;
+                    counterNumber.setText(counter + "");
+                    soundPoolUtil.play(1);
+                    vibrator.vibrate(new long[]{0, 35}, -1);
+                }
                 break;
             case R.id.add:
                 if (counter == 0) {
