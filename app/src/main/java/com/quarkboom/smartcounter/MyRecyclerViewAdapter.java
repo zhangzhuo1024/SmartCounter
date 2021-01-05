@@ -22,10 +22,11 @@ import java.util.List;
  */
 class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.MyHolder> {
 
+    private CallBack callback;
     private List<CounterBean> mCounterBeanList = new ArrayList<>();
 
-    public MyRecyclerViewAdapter() {
-
+    public MyRecyclerViewAdapter(CallBack callback) {
+        this.callback = callback;
     }
 
     public void updateData(List<CounterBean> counterBeanList) {
@@ -130,6 +131,7 @@ class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.M
                 default:
                     break;
             }
+            callback.onCallBack();
         }
 
         public void setData(CounterBean CounterBean, int position) {
@@ -141,5 +143,9 @@ class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.M
             total_time.setText(CounterBean.getTotal());
 
         }
+    }
+
+    interface CallBack{
+        public void onCallBack();
     }
 }

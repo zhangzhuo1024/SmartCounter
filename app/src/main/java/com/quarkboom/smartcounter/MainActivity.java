@@ -167,6 +167,11 @@ public class MainActivity extends BaseActivity {
                 if (counter == 0) {
                     startTimeMillis = getCurrentTimeMillis();
                     mStartTime = getLocalTime(startTimeMillis);
+                    startText.setText(mStartTime.split(" ")[1]);
+                    endText.setText("00:00:00");
+                    useTime.setText("00:00:00");
+                    countTotal.setText("0次");
+                    name.setText("默认");
                 }
                 counter++;
                 counterNumber.setText(counter + "");
@@ -183,6 +188,7 @@ public class MainActivity extends BaseActivity {
                     counterBean.setStartTime(mStartTime);
                     counterBean.setEndTime(mEndTime);
                     counterBean.setUsedTime(changeToDate(endTimeMillis - startTimeMillis));
+                    counterBean.setName(name.getText().toString());
                     counterBeanList.add(counterBean);
                     // 插入新用户
                     DaoUtilsStore.getInstance().getUserDaoUtils().insert(counterBean);
