@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.gyf.immersionbar.ImmersionBar;
 
+import butterknife.ButterKnife;
+
 /**
  * @author: zhuozhang6
  * @date: 2020/12/24
@@ -22,6 +24,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         ImmersionBar.with(this).init();
         setContentView(getLayoutId());
+        ButterKnife.bind(this);
+        DaoManager.getInstance().init(this.getApplication());
         initView();
     }
 
