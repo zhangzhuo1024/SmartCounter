@@ -208,7 +208,7 @@ public class MainActivity extends BaseActivity {
     private String changeToDate(long l) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyy-MM-dd HH:mm:ss");
         sdf.setTimeZone(TimeZone.getTimeZone("GMT+0"));
-        String time = (sdf.format(l)).split(" ")[1];
+        String time = (sdf.format(l + 0.5)).split(" ")[1];
         return time;
     }
 
